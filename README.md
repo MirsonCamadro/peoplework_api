@@ -135,14 +135,13 @@ cambio el metodo para evaluar si esque es un id el que se consulta (.to_i != 0, 
         if query.to_i != 0
             products = Product.where(id: query.to_i)
         elsif query.length > 3
-            products = Product.where('description LIKE ? OR branch LIKE ?', params[:query] + "%" )
+            products = Product.where("description LIKE ? OR branch LIKE ?", "%#{query}%", "%#{query}%" )
+            #comprobando si es un palidromo y si lo es aplicar el descuento al price
+            if query.downcase == query.downcase.reverse
+                products.map{|product| product.price *= 0.5}
+            end    
         else
             products = []
-        end
-    
-        #comprobando si es un palidromo y si lo es aplicar el descuento al price
-        if query.downcase == query.downcase.reverse
-            products.map{|product| product.price *= 0.5}
         end
     
         render json: products
