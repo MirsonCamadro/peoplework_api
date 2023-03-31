@@ -66,57 +66,60 @@ creando el metodo en el controlador Products
 
 luego hay que definir una ruta para poder hacer la query. En routes.rb agregamos entonces la ruta
 
-get 'products/search', to: "products#search"
+    get 'products/search', to: "products#search"
 
 a continuacion levanto el server con rails s y ocupo thunder client (extension de visual studio code para crear requests)
-http://localhost:3000/products/search?query=ingresar_aca_la_query
+
+    http://localhost:3000/products/search?query=ingresar_aca_la_query
 
 pero para probar que funcione necesito datos asi que creo datos dummy en el seeds.rb
 
-Product.create(
-    branch: "branch1",
-    description: "arbol",
-    price: 1000
-)
+    Product.create(
+        branch: "branch1",
+        description: "arbol",
+        price: 1000
+    )
 
-Product.create(
-    branch: "branch2",
-    description: "radar",
-    price: 2000
-)
+    Product.create(
+        branch: "branch2",
+        description: "radar",
+        price: 2000
+    )
 
-Product.create(
-    branch: "branch3",
-    description: "estrella",
-    price: 3500
-)
+    Product.create(
+        branch: "branch3",
+        description: "estrella",
+        price: 3500
+    )
 
 luego rails db:seeds para poblar la base de datos con estos 3 datos
  y hago la consulta para ver si hace el descuento
 
  http://localhost:3000/products/search?query=arbol
- [
-  {
-    "id": 1,
-    "branch": "branch1",
-    "description": "arbol",
-    "price": 1000,
-    "created_at": "2023-03-31T18:04:41.376Z",
-    "updated_at": "2023-03-31T18:04:41.376Z"
-  }
-]
+ 
+     [
+      {
+        "id": 1,
+        "branch": "branch1",
+        "description": "arbol",
+        "price": 1000,
+        "created_at": "2023-03-31T18:04:41.376Z",
+        "updated_at": "2023-03-31T18:04:41.376Z"
+      }
+    ]
+    
  http://localhost:3000/products/search?query=radar
 
- [
-  {
-    "id": 2,
-    "branch": "branch2",
-    "description": "radar",
-    "price": 1000,
-    "created_at": "2023-03-31T18:04:41.399Z",
-    "updated_at": "2023-03-31T18:04:41.399Z"
-  }
-]
+     [
+      {
+        "id": 2,
+        "branch": "branch2",
+        "description": "radar",
+        "price": 1000,
+        "created_at": "2023-03-31T18:04:41.399Z",
+        "updated_at": "2023-03-31T18:04:41.399Z"
+      }
+    ]
 
 Por lo que el metodo esta funcionando.
 
