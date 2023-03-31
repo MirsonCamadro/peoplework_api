@@ -1,4 +1,5 @@
 Para correr este proyecto necesitas la API ubicada en: https://github.com/MirsonCamadro/peoplework_api
+
 y el proyecto web ubicado en: https://github.com/MirsonCamadro/peoplework_web
 
 Ambos proyectos estan hechos con ruby 3.0.0, rails 7.0.4 y postgresql
@@ -163,43 +164,43 @@ en ProductsController creo el metodo:
 
 y creo la vista que tenga el buscador y una tabla con la respuesta. ocupare bootstrap con cdn en application.html.erb para que la tabla tenga algo de estilo.
 
-<h1 class="my-3">Busqueda de productos en la API requerida</h1>
+    <h1 class="my-3">Busqueda de productos en la API requerida</h1>
 
-<%= form_tag(products_search_path, method: :get, class:"mt-4") do %>
-    <%= label_tag(:query, "Puedes buscar id, marca o descrpcion del producto") %>
-    <br>
-    <%= text_field_tag(:query) %>
-    <%= submit_tag("Buscar") %>
-<% end %>
+    <%= form_tag(products_search_path, method: :get, class:"mt-4") do %>
+        <%= label_tag(:query, "Puedes buscar id, marca o descrpcion del producto") %>
+        <br>
+        <%= text_field_tag(:query) %>
+        <%= submit_tag("Buscar") %>
+    <% end %>
 
-<%# validando si hay productos %>
+    <%# validando si hay productos %>
 
-<% if @products.any? %>
-    <h2 class="mt-4">Resultado de la busqueda</h2>
+    <% if @products.any? %>
+        <h2 class="mt-4">Resultado de la busqueda</h2>
 
-    <div class="table-responsive">
-        <table class="table table-dark table-hover text-center mb-5">
-            <thead>
-                <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Precio</th>
-                </tr>
-            </thead>
-            <% @products.each do |product| %>
-                <tbody>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover text-center mb-5">
+                <thead>
                     <tr>
-                        <td><%= product["id"] %></td>
-                        <td><%= product["branch"] %></td>
-                        <td><%= product["description"] %></td>
-                        <td><%= product["price"] %></td>
+                    <th scope="col">Id</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
                     </tr>
-                </tbody>
-            <% end %>
-        </table>
-    </div>
-<% end %>
+                </thead>
+                <% @products.each do |product| %>
+                    <tbody>
+                        <tr>
+                            <td><%= product["id"] %></td>
+                            <td><%= product["branch"] %></td>
+                            <td><%= product["description"] %></td>
+                            <td><%= product["price"] %></td>
+                        </tr>
+                    </tbody>
+                <% end %>
+            </table>
+        </div>
+    <% end %>
 
 a continuacion creo la ruta para acceder a esta vista
 
